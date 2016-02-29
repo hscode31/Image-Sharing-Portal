@@ -4,30 +4,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.beans.Statement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.*;
-import javax.swing.JLabel;
 
 
 public class Myaccount extends JFrame {
 
 	private JPanel contentPane;
-	PreparedStatement pst=null;
-	ResultSet rs=null;
+	private JButton btnUpload;
+	private JButton btnSearch;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -43,9 +34,7 @@ public class Myaccount extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	Connection connect=null;
 	public Myaccount() {
-		connect=DBConnect.dbConn();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,100 +42,35 @@ public class Myaccount extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblWelcome = new JLabel("Welcome, "+ Login.usern );
-		lblWelcome.setBounds(10, 11, 173, 14);
+		JLabel lblWelcome = new JLabel("Welcome, ");
+		lblWelcome.setBounds(10, 11, 137, 14);
 		contentPane.add(lblWelcome);
 		
-		JButton btnUpload = new JButton("Upload");
-		btnUpload.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Upload up=new Upload();
-				up.setVisible(true);
-			}
-		});
-		btnUpload.setBounds(175, 22, 120, 23);
+		btnUpload = new JButton("Upload");
+		
+		btnUpload.setBounds(175, 64, 89, 23);
 		contentPane.add(btnUpload);
 		
-		JButton btnSearch = new JButton("Search");
-		btnSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Image_Search is=new Image_Search();
-				is.setVisible(true);
-			}
-		});
-		btnSearch.setBounds(175, 56, 120, 23);
+		btnSearch = new JButton("Search");
+		
+		btnSearch.setBounds(175, 98, 89, 23);
 		contentPane.add(btnSearch);
 		
 		JButton btnLogout = new JButton("Logout");
-		btnLogout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Login.usern=null;
-				System.exit(0);
-				
-			}
-		});
-		btnLogout.setBounds(175, 226, 120, 23);
+		btnLogout.setBounds(175, 166, 89, 23);
 		contentPane.add(btnLogout);
 		
 		JButton btnMyImages = new JButton("My Images");
-		btnMyImages.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		        try{
-		        	String user = Login.usern;
-		        	String q="select * from portal.photo where username="+"'"+user+"'";
-		        	System.out.println(q);
-		        	pst= connect.prepareStatement(q);
-		          	System.out.println("12345");
-		          //	pst.setString(1, tag1);
-		        	rs=pst.executeQuery();
-		        	System.out.println("dgfhj");
-		        	show_image3 ig=new show_image3(rs);
-		        	ig.setVisible(true);
-		        }catch(Exception e1)
-		        {
-		        	
-		        }
-			}
-		});
-		btnMyImages.setBounds(175, 124, 120, 23);
+		btnMyImages.setBounds(175, 132, 89, 23);
 		contentPane.add(btnMyImages);
-		
-		JButton btnCreateAlbum = new JButton("Create Album");
-		btnCreateAlbum.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				album up=new album();
-				up.setVisible(true);
-			}
-		});
-		btnCreateAlbum.setBounds(175, 90, 120, 23);
-		contentPane.add(btnCreateAlbum);
-		
-		JButton btnMyAlbums = new JButton("My albums");
-		btnMyAlbums.setBounds(175, 158, 120, 23);
-		contentPane.add(btnMyAlbums);
-		
-		JButton btnNewButton = new JButton("My Favourite");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-		        try{
-		        	String user = Login.usern;
-		        	String q="select * from portal.fav where username="+"'"+user+"'";
-		        	System.out.println(q);
-		        	pst= connect.prepareStatement(q);
-		          	System.out.println("12345");
-		          //	pst.setString(1, tag1);
-		        	rs=pst.executeQuery();
-		        	System.out.println("dgfhj");
-		        	show_image3 ig=new show_image3(rs);
-		        	ig.setVisible(true);
-		        }catch(Exception e1)
-		        {
-		        	
-		        }
-			}
-		});
-		btnNewButton.setBounds(175, 192, 120, 23);
-		contentPane.add(btnNewButton);
+		setVisible(true);
 	}
+	public JButton getButton_Upload()
+	{
+        return btnUpload;
+    }
+	public JButton getButton_Search()
+	{
+        return btnSearch;
+    }
 }

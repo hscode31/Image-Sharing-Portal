@@ -11,10 +11,9 @@ public class DBConnect {
 	try
 	{
 	Class.forName("COM.ibm.db2os390.sqlj.jdbc.DB2SQLJDriver");
-	Connection conn=DriverManager.getConnection("jdbc:db2://localhost:50000/ISP","siddiqui", "tyg");
+	Connection conn=DriverManager.getConnection("jdbc:db2://localhost:50000/ISP","Himanshu", "manugolu");
 	return conn;
-	}
-	catch(Exception e)
+	}catch(Exception e)
 	{
 	JOptionPane.showMessageDialog(null, e);
 	return null;

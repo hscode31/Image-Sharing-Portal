@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class Signup extends JFrame {
@@ -24,11 +26,12 @@ public class Signup extends JFrame {
 	private JTextField ps;
 	private JTextField age;
 	private JTextField email;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -39,12 +42,11 @@ public class Signup extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	
 	Connection connect=null;
 	public Signup() {
 		connect=DBConnect.dbConn();
@@ -109,39 +111,39 @@ public class Signup extends JFrame {
 		contentPane.add(email);
 		email.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Signup");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try 
-				{
-					
-					String q="insert into portal.user (fname,lname,username,password,age,emailid) values (?, ?, ?, ?, ?, ?) ";
-					PreparedStatement pst=connect.prepareStatement(q);
-					pst.setString(1, fn.getText());
-					pst.setString(2, ln.getText());
-					pst.setString(3, un.getText());
-					Login.usern = un.getText();
-					pst.setString(4, ps.getText());
-					pst.setString(5, age.getText());
-					pst.setString(6, email.getText());
-					pst.execute();
-					JOptionPane.showMessageDialog(null, "Successfully Registered");
-					Myaccount my=new Myaccount();
-					
-					my.setVisible(true);
-					pst.close();
-				
-				}
-				
-				catch(Exception f)
-				{
-					JOptionPane.showMessageDialog(null, "Username already taken !");
-					f.printStackTrace();
-				}
-			}
-		});
+		btnNewButton = new JButton("Signup");
+		
 		btnNewButton.setBounds(144, 227, 89, 23);
 		contentPane.add(btnNewButton);
+		setVisible(true);
+		repaint();
 	}
-
+	public JButton getButton_Submit()
+	{
+        return btnNewButton;
+    }
+	public String getFname()
+	{
+        return fn.getText();
+    }
+	public String getLname()
+	{
+        return ln.getText();
+    }
+	public String getUname()
+	{
+        return un.getText();
+    }
+	public String getPassword()
+	{
+        return ps.getText();
+    }
+	public String getAge()
+	{
+        return age.getText();
+    }
+	public String getEmail()
+	{
+        return email.getText();
+    }
 }

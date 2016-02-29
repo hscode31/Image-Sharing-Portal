@@ -32,18 +32,18 @@ public class show_image3 extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					show_image3 frame = new show_image3(null);
+					show_image3 frame = new show_image3();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -58,8 +58,8 @@ public class show_image3 extends JFrame {
 		contentPane.setLayout(new GridLayout(3,3));
 		
 		int i=0;
-		JButton b[]= new JButton[6];
-		while(i<6)
+		JButton b[]= new JButton[3];
+		while(i<3)
 		{
 		b[i]=new JButton(String.valueOf(i));
 		contentPane.add(b[i]);
@@ -89,7 +89,7 @@ public class show_image3 extends JFrame {
 				int t=Integer.parseInt(ob.getText());
 				System.out.println(f1[t]);
 				ImageIcon ib=(ImageIcon) ob.getIcon();
-				imgbig d=new imgbig(f1[t].getPath());
+				Album d=new Album(f1[t].getPath());
 				d.setVisible(true);
 		}
 	}
